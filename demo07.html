@@ -4,8 +4,9 @@
 		<meta charset="utf-8">
 		<title>Vue循环语句Demo</title>
 		<script src="js/vue.min.js"></script>
+		<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
 	</head>
-
+		
 	<body>
 		<div id="box">
 			<!--<table>
@@ -21,26 +22,31 @@
 				</tr>
 				
 			</table>-->
-			{{get()}}
-		</div>
-		<script>
+			{{msg}}<br />
+			{{getter()}}
+			<script>
 			new Vue({
 			  	el:'#box',
 			    data:{
 			        msg:'Hello World!',
+			        name:"haha",
+			        age:22,
+			        sex:"m"
 			    },
-			    methods:{
-			        get:function(){
+			    methods: {
+					getter:function(){
 			            //发送get请求
-			            this.$http.get('json/person.json').then(function(res){
+			            this.$http.get("json/person.json").then(function(res){
 			                document.write(res.body);    
 			            },function(){
 			                console.log('请求失败处理');
 			            });
 			        }
-			    }
+				}
 			})
 		</script>
+		</div>
+		
 	</body>
 
 </html>
